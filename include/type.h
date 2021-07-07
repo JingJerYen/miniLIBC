@@ -1,4 +1,4 @@
-#ifndef TYPE_H 
+#ifndef TYPE_H
 #define TYPE_H
 
 #include <linux/types.h>

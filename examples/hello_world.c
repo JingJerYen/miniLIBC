@@ -1,8 +1,15 @@
 #include "system_calls.h"
+#include "stdio.h"
 
 int main(int argc, char *argv[])
 {
     const char buffer[] = "Hello World !!\n";
-    write(1, buffer, sizeof(buffer));       
+
+    // directly call system calls
+    write(STDOUT_FILENO, buffer, sizeof(buffer));
+
+    // fputs is a wrapper, the bottom still calls write
+    fputs(buffer, stdout);
+
     return 0;
 }
