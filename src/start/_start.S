@@ -16,6 +16,9 @@ directly on the stack.
 4. Returning from the syscall, register %rax contains the result of the system-call.
 A value in the range between -4095 and -1 indicates an error, it is -errno
 
+Good Materials :
+https://wiki.osdev.org/Creating_a_C_Library
+
 */
 #include <linux/unistd.h>
 
@@ -24,13 +27,12 @@ A value in the range between -4095 and -1 indicates an error, it is -errno
 
 _start:
 	xorq %rbp,%rbp    /* user code should mark the deepest stack frame
-	                   * by setting the frame pointer to zero
+	                   * by setting the frame pointer to zero, this is
+					   * useful for call tracing debug. 
 	                   */
 
-	movq %rsp,%rdi	  /* rdi is the first args passed to mini_start */
+	movq %rsp,%rdi	  /* rdi is the first args passed to mini_entry */
 
 	call mini_entry 
 
-	movq %rax,%rdi	  /* rdi is the args passed to system call "exit" */
-	movq $__NR_exit,%rax  /* rax is the system call number */
-	syscall
+	hlt

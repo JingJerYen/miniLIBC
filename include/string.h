@@ -3,12 +3,21 @@
 
 #include "type.h"
 
-int strcmp(const char *p1, const char *p2);
+#if defined(__cplusplus)
+extern "C"
+{
+#endif
 
-char* strcpy(char *dest, const char* src);
+    int strcmp(const char *p1, const char *p2);
 
-size_t strlen(const char *str);
+    char *strcpy(char *dest, const char *src);
 
-char* itoa(int value, char *str, int base);
+    size_t strlen(const char *str);
+
+    char *itoa(int value, char *str, int base);
+
+#if defined(__cplusplus)
+} // extern C
+#endif
 
 #endif

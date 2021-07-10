@@ -39,18 +39,19 @@ char *strcpy(char *dest, const char *src)
 char *itoa(int value, char *str, int base)
 {
     char digit[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    char *res = str;
     char *head = str;
 
     // unreasonable base
     if (!str || base < 2 || base > 36)
-        return str;
+        return res;
 
     // some checks on the sign
     if (value < 0)
     {
         // ignore this hard case
         if (base != 10)
-            return str;
+            return res;
         *str++ = '-';
         head++;
         value = -value;
@@ -61,15 +62,16 @@ char *itoa(int value, char *str, int base)
         *str++ = digit[value % base];
         value /= base;
     } while (value > 0);
+
     *str = '\0';
 
     // reverse string
     str--;
-    for (; head != str; head++, str--)
+    for (; head < str; head++, str--)
     {
         char tmp = *head;
         *head = *str;
         *str = tmp;
     }
-    return str;
+    return res;
 }

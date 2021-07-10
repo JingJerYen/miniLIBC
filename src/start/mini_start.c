@@ -1,4 +1,6 @@
-extern int main(int argc, char * argv[]);
+#include "stdlib.h"
+
+extern int main(int argc, char *argv[], char *env[]);
 
 int mini_entry(void *stack_pointer)
 {
@@ -6,12 +8,16 @@ int mini_entry(void *stack_pointer)
 	char **arguments;
 	char **environment;
 
-	count = *((long *) stack_pointer);
-	arguments = ((char **) stack_pointer) + 1;
+	count = *((long *)stack_pointer);
+	arguments = ((char **)stack_pointer) + 1;
 	environment = arguments + count + 1;
 
 	// initialize heap
-	// initialize IO 
+	// initialize IO
 
-	return main(count, arguments);
+	do_global_ctors();
+
+	int ret = main(count, arguments, environment);
+
+	exit(ret);
 }
