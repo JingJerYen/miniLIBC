@@ -11,5 +11,8 @@ int main(int argc, char *argv[], char *env[])
     // fputs is a wrapper, the bottom still calls write
     fputs(buffer, stdout);
 
+    // printf is a wrapper of fputs with buffer mechanism
+    printf("%s\n", buffer);
+
     return 0;
 }

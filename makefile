@@ -59,9 +59,9 @@ $(OBJS_OUTPUT_DIR)/%.o: $(SOURCE_DIR)/%.c
 $(STATIC_LIB): $(OBJS) $(START_OBJS)
 	ar rcs $(LIBS_OUTPUT_DIR)/$@ $(OBJS) $(CTOR_OBJS) $(START_OBJS)
 
-$(EXAMPLES_OUTPUT_DIR)/%: $(EXAMPLE_DIR)/%.c
+$(EXAMPLES_OUTPUT_DIR)/%: $(EXAMPLE_DIR)/%.c $(STATIC_LIB)
 	$(CC) $(CFLAGS) $(LDFLAGS) $<  $(LIBS_OUTPUT_DIR)/$(STATIC_LIB) -o $@
 
 .PHONY: clean
 clean:
-	rm -rf $(BUILD_DIR) hello_world 
+	rm -rf $(BUILD_DIR)

@@ -3,6 +3,11 @@
 
 #include "type.h"
 
+// This is provided by gcc compiler, not glibc.
+// We need it to use va_list, because that strongly depends on
+// compiler implementations and platform ABI.
+#include <stdarg.h>
+
 #define EOF (-1)
 #define STDIN_FILENO 0
 #define STDOUT_FILENO 1
@@ -32,6 +37,12 @@ extern "C"
 
     // Writes the C string to stream.
     int fputs(const char *str, FILE *stream);
+
+    int vfprintf(FILE *stream, const char *format, va_list arg);
+
+    int printf(const char *format, ...);
+
+    int fprintf(FILE *stream, const char *format, ...);
 
 #if defined(__cplusplus)
 } // extern C
