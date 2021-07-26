@@ -5,6 +5,8 @@
 #define NULL (0)
 #endif
 
+#include "type.h"
+
 #if defined(__cplusplus)
 extern "C"
 {
@@ -15,6 +17,10 @@ extern "C"
     int atexit(void (*func)(void));
 
     void do_global_ctors();
+
+    void *malloc(size_t size);
+
+    void free(void *ptr);
 
 #if defined(__cplusplus)
 }

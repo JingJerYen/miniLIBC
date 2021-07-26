@@ -36,8 +36,7 @@ int atexit(atexit_func_t func)
     if (!func)
         return -1;
 
-    // func_node *node = (func_node *)malloc(sizeof(func_node));
-    func_node *node;
+    func_node *node = (func_node *)malloc(sizeof(func_node));
 
     // if malloc fail
     if (!node)

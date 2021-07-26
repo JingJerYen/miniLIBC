@@ -26,6 +26,9 @@ extern "C"
 
     int brk(void *end_data_segment);
 
+    void *mmap(void *address, size_t length, int protection, int flags,
+               int file_descriptor, off_t offset);
+
 #if defined(__cplusplus)
 } // extern C
 #endif

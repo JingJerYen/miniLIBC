@@ -51,7 +51,7 @@ int fputs(const char *str, FILE *stream)
 }
 
 // I design a simple IO buffer, nothing related with glibc.
-#define BUFFER_SIZE 8
+#define BUFFER_SIZE 1024
 static char buffer[BUFFER_SIZE];
 static int buffer_len = 0;
 
